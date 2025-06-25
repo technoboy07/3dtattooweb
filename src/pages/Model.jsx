@@ -1,4 +1,3 @@
-// src/components/Model.jsx
 import React, { useState } from 'react';
 import { useGLTF, Decal, Html } from '@react-three/drei';
 
@@ -7,28 +6,34 @@ export default function Model({ tattooTexture }) {
   const [decals, setDecals] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const handleClick = (e) => {
-    if (!tattooTexture) return;
-    const newDecal = {
-      id: Date.now(),
-      position: e.point.toArray(),
-      rotation: [0, 0, 0],
-      scale: 0.2,
-      texture: tattooTexture,
-    };
-    setDecals([...decals, newDecal]);
-    setSelectedIndex(decals.length);
+const handleClick = (e) => {
+  if (!tattooTexture?.image) return;
+
+  const pos = e.point.toArray();
+  const newDecal = {
+    id: Date.now(),
+    position: pos,
+    rotation: [Math.PI / 2, 0, 0], // help it face outwards
+    scale: 0.2,
+    texture: tattooTexture,
   };
+
+  setDecals([...decals, newDecal]);
+  setSelectedIndex(decals.length);
+};
 
   const updateDecal = (key, value) => {
     setDecals((prev) =>
-      prev.map((d, i) => (i === selectedIndex ? { ...d, [key]: value } : d))
+      prev.map((d, i) =>
+        i === selectedIndex ? { ...d, [key]: value } : d
+      )
     );
   };
 
   return (
     <>
       <primitive object={scene} onClick={handleClick} />
+
       {decals.map((decal, i) => (
         <Decal
           key={decal.id}
@@ -42,6 +47,7 @@ export default function Model({ tattooTexture }) {
           }}
         />
       ))}
+
       {selectedIndex !== null && decals[selectedIndex] && (
         <Html position={decals[selectedIndex].position} center>
           <div className="controls-panel">
