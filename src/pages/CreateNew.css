@@ -1,3 +1,10 @@
+/* ==============================================
+  Original Stylesheet with Added Control Panel CSS
+  ============================================== */
+
+/* --- Google Font for modern controls --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* Main layout for the CreateNew page */
 .create-new-wrapper {
   display: flex;
@@ -78,22 +85,6 @@
     padding: 5px;
 }
 
-/* Instructions section */
-.instructions {
-    margin-top: 24px;
-    padding-top: 16px;
-    border-top: 1px solid #e0e0e0;
-}
-
-.instructions ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.instructions li {
-    margin-bottom: 8px;
-}
-
 /* Styling for the interactive decal controls inside the canvas */
 .decal-controls {
   display: flex;
@@ -116,4 +107,193 @@
   background: #007bff;
   color: white;
   border-color: #007bff;
+}
+
+
+/* ==============================================
+   NEW STYLES FOR CONTROL SECTIONS
+   ============================================== */
+
+/* --- Theming Variables --- */
+:root {
+  --primary-color: #4f46e5;
+  --border-color: #e2e8f0;
+  --text-secondary: #64748b;
+  --accent-light-bg: #eef2ff;
+  --control-radius: 0.5rem;
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* --- Control Section Container --- */
+.control-section {
+  font-family: 'Inter', sans-serif; /* Use modern font for controls */
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--control-radius);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.control-section h4 {
+  margin: -20px -20px 0 -20px;
+  padding: 16px 20px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  border-bottom: 1px solid var(--border-color);
+  background-color: #f8fafc;
+  border-radius: var(--control-radius) var(--control-radius) 0 0;
+}
+
+/* --- Individual Control Item (Label + Input) --- */
+.control-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.control-item label,
+label[for="lock-model"],
+label[for="lock-decal"] {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  flex-grow: 1;
+}
+
+/* --- Custom Toggle Switch (Checkbox) --- */
+.control-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 40px;
+  height: 22px;
+  border: 2px solid var(--border-color);
+  border-radius: 11px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--border-color);
+  flex-shrink: 0;
+}
+
+.control-item input[type="checkbox"]::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 3px;
+  transition: all 0.2s ease-in-out;
+}
+
+.control-item input[type="checkbox"]:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.control-item input[type="checkbox"]:checked::after {
+  transform: translateX(18px);
+}
+
+/* --- Mode Selector Buttons (Move/Rotate/Scale) --- */
+.mode-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.mode-selector button {
+  padding: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+  color: var(--text-secondary);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-selector button:hover {
+  background-color: var(--accent-light-bg);
+  color: var(--primary-color);
+}
+
+.mode-selector button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* --- Custom Slider (for Rotation/Scale) --- */
+.control-item.slider-control {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.control-item input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.control-item input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  margin-top: -7px;
+}
+
+.control-item input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+
+/* --- Improved Instructions Section --- */
+.instructions {
+  font-family: 'Inter', sans-serif;
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: var(--control-radius);
+  border-left: 4px solid var(--primary-color);
+  background-color: var(--accent-light-bg);
+  border-top: none; /* remove old border */
+}
+
+.instruction-step {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #3730a3;
+}
+
+.instruction-step b {
+  font-weight: 600;
+  color: var(--primary-color);
 }
