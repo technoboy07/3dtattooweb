@@ -1,76 +1,119 @@
+/* Main layout for the CreateNew page */
 .create-new-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f0f2f5;
+  overflow: hidden;
 }
 
+/* Container for the 3D model canvas */
 .model-viewer {
-  width: 50%;
-  height: 80%;
-  background-color: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-grow: 1;
+  height: 100%;
+  width: 50%; /* Occupy half the screen */
 }
 
+/* Side panel for controls and instructions */
 .side-panel {
-  width: 50%;
-  height: 80%;
-  background-color: #f7f7f7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  width: 50%; /* Occupy the other half */
+  min-width: 300px;
+  padding: 24px;
+  background-color: #ffffff;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  color: #333;
 }
 
-
-.upload-button {
-  background-color: #222;
-  color: white;
-  padding: 1rem 2.5rem;
+.side-panel h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
   font-size: 1.5rem;
+  color: #1a1a1a;
+}
+
+.side-panel p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Styling for the upload button */
+.upload-button {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #007bff;
+  color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.2s ease-in-out;
+  margin-bottom: 20px;
 }
 
 .upload-button:hover {
-  background-color: #000;
+  background-color: #0056b3;
 }
 
+/* Container for the tattoo preview */
+.tattoo-preview-container {
+    margin-top: 20px;
+    text-align: center;
+}
 
-.controls-panel {
-  background-color: #ffffffdd;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 12px;
+.tattoo-preview-container h3 {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.tattoo-preview {
+    max-width: 80%;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    padding: 5px;
+}
+
+/* Instructions section */
+.instructions {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.instructions ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.instructions li {
+    margin-bottom: 8px;
+}
+
+/* Styling for the interactive decal controls inside the canvas */
+.decal-controls {
   display: flex;
-  flex-direction: column;
   gap: 5px;
-  color: black;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
 }
-.controls-panel {
-  background: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-.controls-panel input[type="range"] {
-  width: 120px;
-}
-.controls-panel button {
-  margin-top: 8px;
-  padding: 4px 10px;
-  background: #e63946;
-  border: none;
-  color: white;
+
+.decal-controls button {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 3px;
   cursor: pointer;
-  border-radius: 4px;
+}
+
+.decal-controls button.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
 }
