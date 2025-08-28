@@ -64,6 +64,7 @@ export default function CreateNew() {
             <input
                 type="checkbox"
                 id="lock-decal"
+                size={100}
                 checked={isDecalLocked}
                 onChange={(e) => setIsDecalLocked(e.target.checked)}
             />

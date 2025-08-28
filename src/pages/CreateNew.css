@@ -1,17 +1,34 @@
 /* ==============================================
-  Original Stylesheet with Added Control Panel CSS
-  ============================================== */
+   Revised Stylesheet for a Professional Dashboard
+   ============================================== */
 
 /* --- Google Font for modern controls --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- Theming Variables (Updated Color Palette) --- */
+:root {
+  --primary-color: #0d9488; /* A calming, professional teal */
+  --primary-hover: #0f766e;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-light: #94a3b8;
+  --surface-100: #f0fdfa; /* A light, airy background for controls */
+  --surface-200: #ccfbf1;
+  --surface-300: #99f6e4;
+  --surface-400: #5eead4;
+  --background: #f0f4f8; /* A soft, cool gray background */
+  --border-radius: 0.5rem;
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
 
 /* Main layout for the CreateNew page */
 .create-new-wrapper {
   display: flex;
   width: 100vw;
   height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f0f2f5;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
   overflow: hidden;
 }
 
@@ -26,126 +43,179 @@
 .side-panel {
   width: 50%; /* Occupy the other half */
   min-width: 300px;
+  max-width: 50vw;
   padding: 24px;
   background-color: #ffffff;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.05);
   overflow-y: auto;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .side-panel h2 {
   margin-top: 0;
   margin-bottom: 24px;
-  font-size: 1.5rem;
-  color: #1a1a1a;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .side-panel p {
   font-size: 0.95rem;
-  line-height: 1.5;
-  color: #555;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
 
-/* Styling for the upload button */
+/* --- Improved Upload Button Design --- */
 .upload-button {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Spacing for an icon if you add one */
   width: 100%;
-  padding: 12px 16px;
-  background-color: #007bff;
+  padding: 14px 16px;
+  background-color: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   text-align: center;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease;
   margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
 }
 
 .upload-button:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg); /* More prominent shadow on hover */
+}
+.upload-button:active {
+  transform: translateY(0);
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-md);
 }
 
-/* Container for the tattoo preview */
+/* Tattoo preview container */
 .tattoo-preview-container {
-    margin-top: 20px;
+    margin-top: 24px;
     text-align: center;
 }
 
 .tattoo-preview-container h3 {
-    margin-bottom: 10px;
-    color: #444;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
 }
 
 .tattoo-preview {
     max-width: 80%;
-    border-radius: 8px;
-    border: 2px solid #e0e0e0;
-    padding: 5px;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--surface-200);
+    padding: 8px;
+    background-color: var(--surface-100);
 }
 
-/* Styling for the interactive decal controls inside the canvas */
+/* Decal controls inside the canvas */
 .decal-controls {
   display: flex;
-  gap: 5px;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 5px;
-  border-radius: 5px;
-  backdrop-filter: blur(5px);
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-md);
 }
 
 .decal-controls button {
-  padding: 5px 10px;
-  border: 1px solid #ccc;
+  padding: 8px 14px;
+  border: 1px solid var(--surface-300);
   background: white;
-  border-radius: 3px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.decal-controls button:hover {
+  background: var(--surface-100);
+  border-color: var(--primary-color);
 }
 
 .decal-controls button.active {
-  background: #007bff;
+  background: var(--primary-color);
   color: white;
-  border-color: #007bff;
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
 }
 
-
-/* ==============================================
-   NEW STYLES FOR CONTROL SECTIONS
-   ============================================== */
-
-/* --- Theming Variables --- */
-:root {
-  --primary-color: #4f46e5;
-  --border-color: #e2e8f0;
-  --text-secondary: #64748b;
-  --accent-light-bg: #eef2ff;
-  --control-radius: 0.5rem;
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+/* --- Improved Mode Selector Buttons --- */
+.mode-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
 }
+
+.mode-selector button {
+  padding: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid var(--surface-300);
+  background-color: #fff;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.mode-selector button:hover {
+  background-color: var(--primary-hover);
+  color: white;
+  border-color: var(--primary-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.mode-selector button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(13, 148, 136, 0.4);
+  transform: translateY(-2px); /* Lift the active button slightly */
+}
+.mode-selector button.active:hover {
+  transform: translateY(-2px); /* Maintain the lift on hover */
+}
+
 
 /* --- Control Section Container --- */
 .control-section {
-  font-family: 'Inter', sans-serif; /* Use modern font for controls */
+  font-family: 'Inter', sans-serif;
   margin-top: 24px;
-  padding: 20px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--control-radius);
+  padding: 24px;
+  border: 1px solid var(--surface-200);
+  border-radius: var(--border-radius);
   background-color: #fff;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  box-shadow: var(--shadow-md);
 }
 
 .control-section h4 {
-  margin: -20px -20px 0 -20px;
-  padding: 16px 20px;
+  margin: -24px -24px 0 -24px;
+  padding: 16px 24px;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #1e293b;
-  border-bottom: 1px solid var(--border-color);
-  background-color: #f8fafc;
-  border-radius: var(--control-radius) var(--control-radius) 0 0;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--surface-200);
+  background-color: var(--surface-100);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 /* --- Individual Control Item (Label + Input) --- */
@@ -154,7 +224,8 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  padding: 0;
 }
 
 .control-item label,
@@ -170,67 +241,36 @@ label[for="lock-decal"] {
 .control-item input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
-  width: 40px;
-  height: 22px;
-  border: 2px solid var(--border-color);
-  border-radius: 11px;
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
   cursor: pointer;
   position: relative;
-  transition: all 0.2s ease-in-out;
-  background-color: var(--border-color);
+  transition: background-color 0.2s ease-in-out;
+  background-color: var(--surface-300);
   flex-shrink: 0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .control-item input[type="checkbox"]::after {
   content: '';
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   background-color: white;
   border-radius: 50%;
-  top: 2px;
+  top: 3px;
   left: 3px;
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: var(--shadow-md);
 }
 
 .control-item input[type="checkbox"]:checked {
   background-color: var(--primary-color);
-  border-color: var(--primary-color);
 }
 
 .control-item input[type="checkbox"]:checked::after {
-  transform: translateX(18px);
-}
-
-/* --- Mode Selector Buttons (Move/Rotate/Scale) --- */
-.mode-selector {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  width: 100%;
-}
-
-.mode-selector button {
-  padding: 10px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  border: 1px solid var(--border-color);
-  background-color: #fff;
-  color: var(--text-secondary);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.mode-selector button:hover {
-  background-color: var(--accent-light-bg);
-  color: var(--primary-color);
-}
-
-.mode-selector button.active {
-  background-color: var(--primary-color);
-  color: white;
-  border-color: var(--primary-color);
+  transform: translateX(20px);
 }
 
 /* --- Custom Slider (for Rotation/Scale) --- */
@@ -243,33 +283,37 @@ label[for="lock-decal"] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 6px;
-  background: var(--border-color);
-  border-radius: 3px;
+  height: 8px;
+  background: var(--surface-300);
+  border-radius: 4px;
   outline: none;
   cursor: pointer;
   margin-top: 8px;
+  transition: background 0.2s ease;
+}
+.control-item input[type="range"]:hover {
+    background: var(--surface-400);
 }
 
 .control-item input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background: var(--primary-color);
   border-radius: 50%;
-  border: 3px solid white;
+  border: 4px solid white;
   box-shadow: var(--shadow-md);
   cursor: pointer;
-  margin-top: -7px;
+  margin-top: 0;
 }
 
 .control-item input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background: var(--primary-color);
   border-radius: 50%;
-  border: 3px solid white;
+  border: 4px solid white;
   box-shadow: var(--shadow-md);
   cursor: pointer;
 }
@@ -279,18 +323,17 @@ label[for="lock-decal"] {
 .instructions {
   font-family: 'Inter', sans-serif;
   margin-top: 24px;
-  padding: 16px;
-  border-radius: var(--control-radius);
+  padding: 20px;
   border-left: 4px solid var(--primary-color);
-  background-color: var(--accent-light-bg);
-  border-top: none; /* remove old border */
+  background-color: var(--background);
+  border-radius: var(--border-radius);
 }
 
 .instruction-step {
   margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #3730a3;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-primary);
 }
 
 .instruction-step b {
